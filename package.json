@@ -1,0 +1,63 @@
+{
+    "name": "ezjsonm-actual",
+    "exportedEnvVars": {
+        "CAML_LD_LIBRARY_PATH": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/lib/stublibs"
+        },
+        "ezjsonm_version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "0.4.3"
+        },
+        "FINDLIB": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/lib"
+        },
+        "ezjsonm_installed": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "true"
+        },
+        "version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "0.4.3"
+        },
+        "PATH": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/bin"
+        },
+        "ezjsonm_enable": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "enable"
+        }
+    },
+    "version": "0.4.3",
+    "dependencies": {
+        "@opam-alpha/jsonm": ">= 0.9.1",
+        "@opam-alpha/alcotest": ">= 0.4.0",
+        "@opam-alpha/ocamlfind": "*",
+        "dependency-env": "*",
+        "substs": "https://github.com/yunxing/substs.git",
+        "@opam-alpha/ocamlbuild": "*",
+        "@opam-alpha/sexplib": "*",
+        "@opam-alpha/lwt": "*",
+        "nopam": "*",
+        "@opam-alpha/hex": "*",
+        "opam-installer-bin": "https://github.com/yunxing/opam-installer-bin.git"
+    },
+    "scripts": {
+        "postinstall": "eval $(dependencyEnv) && nopam && ./configure --prefix $opam_prefix --${lwt_enable:-disable}-lwt && make && make install && (opam-installer --prefix=$opam_prefix || true)"
+    },
+    "peerDependencies": {
+        "@opam-alpha/ocaml": ">= 4.2.3"
+    }
+}
